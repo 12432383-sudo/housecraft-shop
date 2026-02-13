@@ -34,8 +34,8 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-soft'
-          : 'bg-transparent'
+        ? 'bg-background/95 backdrop-blur-md shadow-soft'
+        : 'bg-transparent'
         }`}
     >
       <div className="container-main">
@@ -54,8 +54,8 @@ const Header = () => {
                 key={item.path}
                 to={item.path}
                 className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${location.pathname === item.path
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
+                  ? 'text-primary'
+                  : 'text-muted-foreground'
                   }`}
               >
                 {item.name}
@@ -81,6 +81,13 @@ const Header = () => {
                 </Button>
               </Link>
             )}
+            {!user && (
+              <Link to="/auth">
+                <Button variant="warm" size="sm">
+                  Sign In
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -101,8 +108,8 @@ const Header = () => {
                   key={item.path}
                   to={item.path}
                   className={`py-3 text-sm font-medium border-b border-border/50 transition-colors ${location.pathname === item.path
-                      ? 'text-primary'
-                      : 'text-muted-foreground hover:text-primary'
+                    ? 'text-primary'
+                    : 'text-muted-foreground hover:text-primary'
                     }`}
                 >
                   {item.name}
@@ -117,6 +124,23 @@ const Header = () => {
                   Admin Panel
                 </Link>
               )}
+              {!user && (
+                <Link
+                  to="/auth"
+                  className="py-3 text-sm font-medium text-primary"
+                >
+                  Sign In
+                </Link>
+              )}
+              <a
+                href={`https://instagram.com/${settings.instagramAccount}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-3 text-sm font-medium text-muted-foreground flex items-center gap-2"
+              >
+                <Instagram className="w-4 h-4" />
+                Instagram
+              </a>
             </nav>
           </div>
         )}
