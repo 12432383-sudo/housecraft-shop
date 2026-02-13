@@ -12,7 +12,7 @@ export const useAuth = () => {
   const adminWhitelist = [
     '12432383@students.liu.edu.lb',
     'housecraft442@gmail.com',
-  ];
+  ].map(email => email.toLowerCase());
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -66,7 +66,7 @@ export const useAuth = () => {
     user,
     session,
     isLoading,
-    isAdmin: user ? adminWhitelist.includes(user.email || '') : false,
+    isAdmin: user ? adminWhitelist.includes(user.email?.toLowerCase() || '') : false,
     signIn,
     signUp,
     signOut,
