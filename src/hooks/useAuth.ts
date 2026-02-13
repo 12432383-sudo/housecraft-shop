@@ -6,13 +6,13 @@ export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // List of emails allowed to access the admin panel
   const adminWhitelist = [
     '12432383@students.liu.edu.lb',
     'housecraft442@gmail.com',
-  ].map(email => email.toLowerCase());
+  ].map(email => email.toLowerCase().trim());
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -57,7 +57,8 @@ export const useAuth = () => {
     if (!error) {
       setUser(null);
       setSession(null);
-      setIsAdmin(false);
+      setUser(null);
+      setSession(null);
     }
     return { error };
   };
@@ -66,7 +67,7 @@ export const useAuth = () => {
     user,
     session,
     isLoading,
-    isAdmin: user ? adminWhitelist.includes(user.email?.toLowerCase() || '') : false,
+    isAdmin: user ? adminWhitelist.includes(user.email?.toLowerCase().trim() || '') : false,
     signIn,
     signUp,
     signOut,

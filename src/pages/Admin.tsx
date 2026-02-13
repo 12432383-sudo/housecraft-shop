@@ -100,10 +100,26 @@ const Admin = () => {
   if (!user || !isAdmin) {
     return (
       <Layout>
-        <div className="section-padding text-center">
-          <h1 className="text-2xl font-serif font-bold mb-4">Access Denied</h1>
-          <p className="text-muted-foreground mb-4">You need to be logged in as an admin.</p>
-          <Button variant="outline" onClick={() => navigate('/auth')}>Login</Button>
+        <div className="section-padding text-center max-w-md mx-auto">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+            <Lock className="w-12 h-12 text-red-500 mx-auto mb-4" />
+            <h1 className="text-2xl font-serif font-bold mb-2">Access Denied</h1>
+            <p className="text-muted-foreground mb-4">
+              Your account (<strong>{user?.email || 'Guest'}</strong>) is not on the Admin whitelist.
+            </p>
+            <div className="text-sm text-left bg-white p-4 rounded border mb-4">
+              <p className="font-semibold mb-2">To fix this:</p>
+              <ul className="list-disc list-inside space-y-1 text-xs">
+                <li>Make sure you signed up with the correct email.</li>
+                <li>Verify your email if Supabase sent you a link.</li>
+                <li>Contact the developer to add this email to the whitelist.</li>
+              </ul>
+            </div>
+            <div className="flex flex-col gap-2">
+              <Button onClick={() => navigate('/auth')}>Try Different Account</Button>
+              <Button variant="outline" onClick={handleSignOut}>Sign Out</Button>
+            </div>
+          </div>
         </div>
       </Layout>
     );
