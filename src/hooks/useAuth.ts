@@ -6,7 +6,6 @@ export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
 
   // List of emails allowed to access the admin panel
   const adminWhitelist = [
@@ -55,8 +54,6 @@ export const useAuth = () => {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (!error) {
-      setUser(null);
-      setSession(null);
       setUser(null);
       setSession(null);
     }
