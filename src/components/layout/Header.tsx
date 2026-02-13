@@ -81,13 +81,6 @@ const Header = () => {
                 </Button>
               </Link>
             )}
-            {!user && (
-              <Link to="/auth">
-                <Button variant="warm" size="sm">
-                  Sign In
-                </Button>
-              </Link>
-            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -122,14 +115,6 @@ const Header = () => {
                 >
                   <ShieldCheck className="w-4 h-4" />
                   Admin Panel
-                </Link>
-              )}
-              {!user && (
-                <Link
-                  to="/auth"
-                  className="py-3 text-sm font-medium text-primary"
-                >
-                  Sign In
                 </Link>
               )}
               <a
