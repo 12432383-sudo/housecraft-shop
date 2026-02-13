@@ -19,8 +19,19 @@ const Auth = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
+  // Diagnostic check
+  const isConfigured = !!import.meta.env.VITE_SUPABASE_URL && (!!import.meta.env.VITE_SUPABASE_ANON_KEY || !!import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isConfigured) {
+      toast({
+        title: "Connection Error",
+        description: "Supabase environment variables are missing in Vercel. Please check your Project Settings.",
+        variant: "destructive",
+      });
+      return;
+    }
     setIsSubmitting(true);
 
     try {
